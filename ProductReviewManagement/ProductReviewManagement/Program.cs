@@ -41,6 +41,8 @@ namespace ProductReviewManagement
             }
             Console.WriteLine("Top three records");
             ProductManagement.TopRecords(productReviewList);
+            Console.WriteLine("Record based on ProductID");
+            ProductManagement.SelectedRecord(productReviewList);
         }
     }
 }
