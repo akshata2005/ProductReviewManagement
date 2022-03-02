@@ -39,6 +39,8 @@ namespace ProductReviewManagement
                 Console.WriteLine("ProductID:-" + list.ProductID + " " + "UserID:-" + list.UserID + " " + "Rating:-" + list.Rating + " " +
                     "Review:-" + list.Review + " " + "IsLike:-" + list.IsLike);
             }
+            Console.WriteLine("Top three records");
+            ProductManagement.TopRecords(productReviewList);
         }
     }
 }
