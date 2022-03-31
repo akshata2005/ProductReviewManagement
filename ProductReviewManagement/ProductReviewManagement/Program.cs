@@ -58,6 +58,9 @@ namespace ProductReviewManagement
             //UC7
             product.InsertValuesInDataTable(productReviewList);
             Console.WriteLine("\nValues inserted in DataTable.");
+            /// UC9
+            Console.WriteLine("\nRecords with isLike True: ");
+            product.GetRecordsWithIsLikeTrue();
         }
     }
 }
