@@ -55,6 +55,9 @@ namespace ProductReviewManagement
             /// UC6
             Console.WriteLine("\nSkiping top 5 records.");
             product.SkipTopFiveRecords(productReviewList);
+            //UC7
+            product.InsertValuesInDataTable(productReviewList);
+            Console.WriteLine("\nValues inserted in DataTable.");
         }
     }
 }
