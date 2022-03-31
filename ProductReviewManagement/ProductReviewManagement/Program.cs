@@ -52,6 +52,9 @@ namespace ProductReviewManagement
             /// UC5
             Console.WriteLine("\nProduct id and reviews from the list");
             product.GetProductIdAndReview(productReviewList);
+            /// UC6
+            Console.WriteLine("\nSkiping top 5 records.");
+            product.SkipTopFiveRecords(productReviewList);
         }
     }
 }
