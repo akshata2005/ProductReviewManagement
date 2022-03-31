@@ -9,34 +9,59 @@ namespace ProductReviewManagement
     public class ProductManagement
     {
         /// <summary>
-        /// UC-2 Top three records
+        /// Top rated 3 products are selected from list.
         /// </summary>
-        /// <param name="reviews"></param>
-        public static void TopRecords(List<ProductReview> reviews)
+        /// <param name="listProductReview">The list product review.</param>
+        public void TopRecords(List<ProductReview> listProductReview)
         {
-            var record = (from productReviews in reviews
-                          orderby productReviews.Rating descending
-                          select productReviews).Take(3);
-            foreach (var list in record)
+            var recordedData = (from productReviews in listProductReview
+                                orderby productReviews.Rating descending
+                                select productReviews).Take(3);
+            foreach (var list in recordedData)
             {
-                Console.WriteLine("ProductID:-" + list.ProductID + " " + "UserID:-" + list.UserID + " " + "Rating:-" + list.Rating + " " +
-                        "Review:-" + list.Review + " " + "IsLike:-" + list.IsLike);
+                Console.WriteLine("ProductId: " + list.ProductID + " UserId: " + list.UserID + " Rating: " + list.Rating +
+                    " Review: " + list.Review + " IsLike: " + list.IsLike);
             }
         }
         /// <summary>
-        /// find the specific record based on ProductID.
+        /// UC3 Finds ratings greater than three of specific products.
         /// </summary>
-        /// <param name="review"></param>
-        public static void SelectedRecord(List<ProductReview> review)
+        /// <param name="listProductReview">The list product review.</param>
+        public void RatingsGreaterThanThreeOfSpecificProducts(List<ProductReview> listProductReview)
         {
-            var record = from productReviews in review
-                         where (productReviews.ProductID == 1 && productReviews.Rating > 3) || (productReviews.ProductID == 4 && productReviews.Rating > 3) ||
-                         (productReviews.ProductID == 9 && productReviews.Rating > 3)
-                         select productReviews;
-            foreach (var list in record)
+            var recordedData = from productReview in listProductReview
+                               where (productReview.ProductID == 1 || productReview.ProductID == 2 || productReview.ProductID == 4)
+                               && productReview.Rating > 3
+                               select productReview;
+            foreach (var list in recordedData)
             {
-                Console.WriteLine("ProductID:-" + list.ProductID + " " + "UserID:-" + list.UserID + " " + "Rating:-" + list.Rating + " " +
-                        "Review:-" + list.Review + " " + "IsLike:-" + list.IsLike);
+                Console.WriteLine("ProductId: " + list.ProductID + " UserId: " + list.UserID + " Rating: " + list.Rating +
+                    " Review: " + list.Review + " IsLike: " + list.IsLike);
+            }
+        }
+        /// <summary>
+        /// UC4 Gets review count for each ProductId.
+        /// </summary>
+        /// <param name="listProductReview"></param>
+        public void GetReviewsCount(List<ProductReview> listProductReview)
+        {
+            var recordedData = listProductReview.GroupBy(x => x.ProductID).Select(x => new { ProductId = x.Key, Count = x.Count() });
+            foreach (var list in recordedData)
+            {
+                Console.WriteLine(list.ProductId + ": " + list.Count);
+            }
+        }
+        /// <summary>
+        /// Get only product id and reviews from the list
+        /// </summary>
+        /// <param name="listProductReview"></param>
+        public void GetProductIdAndReview(List<ProductReview> listProductReview)
+        {
+            var recordedData = from productReview in listProductReview select new { productReview.ProductID, productReview.Review };
+
+            foreach (var list in recordedData)
+            {
+                Console.WriteLine(list.ProductID + "-->" + list.Review);
             }
         }
     }

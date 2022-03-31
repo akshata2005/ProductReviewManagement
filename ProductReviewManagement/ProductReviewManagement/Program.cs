@@ -39,10 +39,19 @@ namespace ProductReviewManagement
                 Console.WriteLine("ProductID:-" + list.ProductID + " " + "UserID:-" + list.UserID + " " + "Rating:-" + list.Rating + " " +
                     "Review:-" + list.Review + " " + "IsLike:-" + list.IsLike);
             }
-            Console.WriteLine("Top three records");
-            ProductManagement.TopRecords(productReviewList);
-            Console.WriteLine("Record based on ProductID");
-            ProductManagement.SelectedRecord(productReviewList);
+            /// UC2
+            Console.WriteLine("\n Top 3 rated products.");
+            ProductManagement product = new ProductManagement();
+            product.TopRecords(productReviewList);
+            /// UC3
+            Console.WriteLine("\n Ratings greater than three of specific products: ");
+            product.RatingsGreaterThanThreeOfSpecificProducts(productReviewList);
+            /// UC4
+            Console.WriteLine("\n Review count for each product Id.");
+            product.GetReviewsCount(productReviewList);
+            /// UC5
+            Console.WriteLine("\nProduct id and reviews from the list");
+            product.GetProductIdAndReview(productReviewList);
         }
     }
 }
